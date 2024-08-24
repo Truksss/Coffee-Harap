@@ -12,21 +12,21 @@ import {
 } from "@/components/ui/card";
 import Dropdown from "@/components/ui/dropdown";
 import { GiHamburgerMenu } from "react-icons/gi";
-
+import  {CardsCarousel}  from "../components/ui/cards-carousel-inputs";
+import { FileUpload } from "@/components/ui/file-upload";
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+    setIsMenuOpen(prev => !prev);
   };
 
   return (
-    <div className="relative min-h-screen">
       <AuroraBackground>
         <Navbar onToggleMenu={toggleMenu} />
         {!isMenuOpen && (
-          <div className="flex flex-col md:flex-row justify-center items-center h-full pt-20 space-y-4 md:space-y-0 md:space-x-8">
-            <Card className="relative overflow-hidden w-auto">
+          <div className="flex flex-col md:flex-row justify-center items-center h-full pt-20 space-y-4 md:space-y-0 md:space-x-8 relative z-20">
+            <Card className="relative overflow-hidden w-auto mt-4">
               <div className="relative z-10 p-4">
                 <CardHeader>
                   <CardTitle className="text-center">Upload Instructions</CardTitle>
@@ -70,23 +70,26 @@ export default function Home() {
                 </CardHeader>
               </div>
             </Card>
-            <Card className="relative overflow-hidden w-64">
-              <div className="relative z-10 p-4">
-                <Dropdown icon={<GiHamburgerMenu size={24} />}>                 
-                </Dropdown>
-                <CardHeader>
-                  <CardTitle>Card 2 Title</CardTitle>
-                  <CardDescription>Card 2 Description</CardDescription>
-                </CardHeader>
-                <CardContent>Picture 2</CardContent>
-                <CardFooter>
-                  <button onClick={() => alert("Button 2 clicked!")}>Click Me</button>
-                </CardFooter>
-              </div>
-            </Card>
-          </div>
+            <Card className="relative overflow-hidden w-96 h-auto">
+            <div className="relative z-10 p-4">
+              <Dropdown icon={<GiHamburgerMenu size={24} />}>                 
+              </Dropdown>
+              <CardHeader>
+                <CardTitle>Upload Image</CardTitle>
+                <CardDescription>Upload a coffee leaf image to analyze.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <FileUpload />
+              </CardContent>
+              <CardFooter />
+            </div>
+          </Card>
+        </div>
         )}
+              <div id="cards-carousel" className="relative mt-12 z-0">
+        <CardsCarousel/>
+      </div>
       </AuroraBackground>
-    </div>
+
   );
 }

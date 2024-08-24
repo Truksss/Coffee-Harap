@@ -10,8 +10,13 @@ interface NavbarProps {
 export default function Navbar({ onToggleMenu }: NavbarProps) {
   const [isOpen, setIsOpen] = React.useState(false);
 
+  const handleMenuToggle = () => {
+    setIsOpen(!isOpen);
+    onToggleMenu();
+  };
+
   return (
-    <nav className="absolute top-0 left-0 w-full flex items-center justify-between py-10 px-10">
+    <nav className="absolute top-0 left-0 w-full flex items-center justify-between py-10 px-10 z-50">
       <h1 className="text-2xl font-extrabold text-emerald-800 underline underline-offset-8 decoration-orange-950">
         BarakoBama ☕🍃
       </h1>
@@ -19,10 +24,7 @@ export default function Navbar({ onToggleMenu }: NavbarProps) {
       {/* Menu Toggle Button */}
       <button
         className="block lg:hidden p-2 text-amber-900 hover:text-amber-600"
-        onClick={() => {
-          setIsOpen(!isOpen);
-          onToggleMenu(); // Call the parent's toggle function
-        }}
+        onClick={handleMenuToggle}
       >
         {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
       </button>
@@ -34,13 +36,13 @@ export default function Navbar({ onToggleMenu }: NavbarProps) {
         } lg:translate-x-0 lg:relative lg:flex lg:items-center lg:justify-between lg:bg-transparent lg:p-0 lg:w-auto`}
       >
         <div className="flex flex-col lg:flex-row lg:space-x-4 lg:items-center lg:ml-auto lg:mt-0 mt-16">
-          <a className="text-amber-900  hover:text-amber-600 rounded-lg px-4 py-2" href="/">
+          <a className="text-amber-900 hover:text-amber-600 rounded-lg px-4 py-2" href="/">
             Home
           </a>
-          <a className="text-amber-900  hover:text-amber-600 rounded-lg px-4 py-2" href="/">
+          <a className="text-amber-900 hover:text-amber-600 rounded-lg px-4 py-2" href="#cards-carousel">
             Diseases
           </a>
-          <a className="text-amber-900  hover:text-amber-600 rounded-lg px-4 py-2" href="/">
+          <a className="text-amber-900 hover:text-amber-600 rounded-lg px-4 py-2" href="/">
             About Us
           </a>
         </div>
@@ -49,7 +51,7 @@ export default function Navbar({ onToggleMenu }: NavbarProps) {
           className="lg:hidden absolute top-4 right-4 p-2 text-amber-900 hover:text-amber-600"
           onClick={() => {
             setIsOpen(false);
-            onToggleMenu(); // Call the parent's toggle function
+            onToggleMenu();
           }}
         >
           <FaTimes size={24} />

@@ -28,6 +28,12 @@ yarn-error.log*
 # local env files
 .env*.local
 
+# Ignore the virtual environment
+venv/
+
+#Ignore flask
+flask/
+
 # vercel
 .vercel
 
